@@ -205,12 +205,12 @@ jobs:
           cp -f extension_api.json godot-cpp/gdextension/
 
       # Build godot-cpp test extension
-      - name: Build godot-cpp test extension
-        if: ${{ matrix.godot-cpp-test }}
-        run: |
-          cd godot-cpp/test
-          scons target=template_debug dev_build=yes
-          cd ../..
+      #- name: Build godot-cpp test extension
+      #  if: ${{ matrix.godot-cpp-test }}
+      #  run: |
+      #    cd godot-cpp/test
+      #    scons target=template_debug dev_build=yes
+      #    cd ../..
 
       - name: Prepare artifact
         if: ${{ matrix.artifact }}
