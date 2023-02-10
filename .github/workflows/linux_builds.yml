@@ -25,7 +25,7 @@ jobs:
             cache-name: linux-editor-mono
             target: editor
             tests: false # Disabled due freeze caused by mix Mono build and CI
-            sconsflags: module_mono_enabled=yes
+            sconsflags: module_mono_enabled=yes debug_symbols=yes
             doc-test: true
             bin: "./bin/godot.linuxbsd.editor.x86_64.mono"
             build-mono: true
@@ -60,7 +60,7 @@ jobs:
             cache-name: linux-template-mono
             target: template_release
             tests: false
-            sconsflags: module_mono_enabled=yes
+            sconsflags: module_mono_enabled=yes debug_symbols=yes
             build-mono: false
             artifact: true
 
@@ -69,7 +69,7 @@ jobs:
             target: template_release
             tests: false
             sconsflags: modules_enabled_by_default=no disable_3d=yes disable_advanced_gui=yes deprecated=no minizip=no
-            artifact: true
+            artifact: false
 
     steps:
       - uses: actions/checkout@v3
@@ -224,7 +224,6 @@ jobs:
       - name: Prepare artifact
         if: ${{ matrix.artifact }}
         run: |
-          strip bin/godot.*
           chmod +x bin/godot.*
 
       - name: Upload artifact
