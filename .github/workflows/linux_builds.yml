@@ -25,7 +25,7 @@ jobs:
             cache-name: linux-editor-mono
             target: editor
             tests: false # Disabled due freeze caused by mix Mono build and CI
-            sconsflags: module_mono_enabled=yes debug_symbols=yes
+            sconsflags: module_mono_enabled=yes
             doc-test: true
             bin: "./bin/godot.linuxbsd.editor.x86_64.mono"
             build-mono: true
@@ -60,7 +60,7 @@ jobs:
             cache-name: linux-template-mono
             target: template_release
             tests: false
-            sconsflags: module_mono_enabled=yes debug_symbols=yes
+            sconsflags: module_mono_enabled=yes
             build-mono: false
             artifact: true
 
