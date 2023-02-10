@@ -44,7 +44,7 @@ jobs:
             bin: "./bin/godot.linuxbsd.editor.dev.double.x86_64.san"
             build-mono: false
             # Skip 2GiB artifact speeding up action.
-            artifact: true
+            artifact: false
 
           - name: Editor with clang sanitizers (target=editor, tests=yes, dev_build=yes, use_asan=yes, use_ubsan=yes, use_llvm=yes, linker=lld)
             cache-name: linux-editor-llvm-sanitizers
@@ -54,7 +54,7 @@ jobs:
             bin: "./bin/godot.linuxbsd.editor.dev.x86_64.llvm.san"
             build-mono: false
             # Skip 2GiB artifact speeding up action.
-            artifact: true
+            artifact: false
 
           - name: Template w/ Mono (target=template_release)
             cache-name: linux-template-mono
@@ -62,13 +62,20 @@ jobs:
             tests: false
             sconsflags: module_mono_enabled=yes
             build-mono: false
-            artifact: true
+            artifact: false
 
           - name: Minimal template (target=template_release, everything disabled)
             cache-name: linux-template-minimal
             target: template_release
             tests: false
             sconsflags: modules_enabled_by_default=no disable_3d=yes disable_advanced_gui=yes deprecated=no minizip=no
+            artifact: true
+            
+          - name: Minimal template (target=template_release, everything disabled, debug_symbols)
+            cache-name: linux-template-minimal-debug_symbols
+            target: template_release
+            tests: false
+            sconsflags: modules_enabled_by_default=no disable_3d=yes disable_advanced_gui=yes deprecated=no minizip=no debug_symbols=yes
             artifact: true
 
     steps:
